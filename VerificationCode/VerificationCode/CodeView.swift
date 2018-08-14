@@ -110,8 +110,10 @@ extension CodeView {
             $0.text = nil
         }
         for i in 0 ..< (textFiled.text?.count)! {
-            (labelArr[i] as UILabel).isHidden = false
-            (labelArr[i] as UILabel).text = textFiled.text?.subString(start: i, length: 1)
+            if i < labelArr.count {
+                (labelArr[i] as UILabel).isHidden = false
+                (labelArr[i] as UILabel).text = textFiled.text?.subString(start: i, length: 1)
+            }
         }
         if errorOrclean == "error" {
             self.lineArr.forEach({ (view) in
@@ -124,7 +126,9 @@ extension CodeView {
                     view.backgroundColor = self.Base.lineColor
                 })
                 for i in 0 ..< (self.textFiled.text?.count)! {
-                    (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
+                    if i < self.lineArr.count {
+                          (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
+                    }
                 }
             }
             errorOrclean = ""
@@ -133,7 +137,9 @@ extension CodeView {
                 view.backgroundColor = self.Base.lineColor
             }
             for i in 0 ..< (self.textFiled.text?.count)! {
+                if i < self.lineArr.count {
                 (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
+                }
             }
             
         }
@@ -168,7 +174,7 @@ extension CodeView {
     
     func clearnText(error:String) {
         self.errorOrclean = error
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {[unowned self] in
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {[unowned self] in
             self.textFiled.text = ""
             self.textFieldDidChange(filed: self.textFiled)
         }
