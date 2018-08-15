@@ -11,7 +11,6 @@ import UIKit
 enum Length: AsunFloct {
     case onceWidth  = 40  //横线宽度
     case onceHeight = 1 //横线高度
-    case spaceWidth = 10 //间隔宽度
 }
 
 class CodeView: UIView {
@@ -36,16 +35,17 @@ class CodeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        creatTextView()
-        creatInputLabel()
-        creatLineView()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func layoutSubviews() {
         creatTextView()
-        creatLineView()
         creatInputLabel()
+        creatLineView()
     }
 }
 
@@ -67,9 +67,9 @@ extension CodeView {
     fileprivate func creatLineView() {
         for num in 0 ..< Int(Base.codeNum) {
             //表达式太长 拆分两步骤
-            let x = CGFloat(num)*Length.onceWidth.rawValue
-            let x1 = CGFloat(num)*(width-Base.codeNum*Length.onceWidth.rawValue)/(Base.codeNum-1)
-            let lineView = UIView(frame: CGRect(x: x+x1, y: height -  Length.onceHeight.rawValue, width: Length.onceWidth.rawValue, height: Length.onceHeight.rawValue))
+            let x = CGFloat(num)*40
+            let x1 = CGFloat(num)*(width-Base.codeNum*40)/(Base.codeNum-1)
+            let lineView = UIView(frame: CGRect(x: x+x1, y: height -  Length.onceHeight.rawValue, width: 40, height: 2))
             lineView.backgroundColor = Base.lineColor
             addSubview(lineView)
             lineArr.append(lineView)
@@ -127,7 +127,7 @@ extension CodeView {
                 })
                 for i in 0 ..< (self.textFiled.text?.count)! {
                     if i < self.lineArr.count {
-                          (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
+                        (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
                     }
                 }
             }
@@ -138,7 +138,7 @@ extension CodeView {
             }
             for i in 0 ..< (self.textFiled.text?.count)! {
                 if i < self.lineArr.count {
-                (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
+                    (self.lineArr[i] as UIView).backgroundColor = self.Base.lineInputColor
                 }
             }
             

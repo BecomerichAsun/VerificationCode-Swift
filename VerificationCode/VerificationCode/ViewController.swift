@@ -13,11 +13,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let code = CodeView(frame: CGRect(x: 50, y: 100, width: self.view.frame.size.width - 63*2, height: 50))
+        let code = CodeView(frame: CGRect(x: 63, y: 100, width: self.view.frame.size.width - 63*2, height: 40))
         
         //Change Basic Attributes
         /*
          code.Base.changeViewBasicAttributes(codeNum: 4, lineColor: UIColor.blue, lineInputColor: UIColor.black, cursorColor: UIColor.red, errorColor: UIColor.red, fontNum: UIFont.systemFont(ofSize: 20), textColor: UIColor.black)
+        
+         or
+         
+        code.Base.changeInputNum(num: 4)
          */
         
         //To obtain Input Text

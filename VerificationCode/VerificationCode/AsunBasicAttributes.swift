@@ -30,12 +30,14 @@ protocol AsunCodeProtocol {
     var textColor:UIColor {get set}
     
     // 更改属性的方法
-    mutating func changeViewBasicAttributes(codeNum:AsunFloct,lineColor:UIColor,lineInputColor:UIColor,cursorColor:UIColor,errorColor:UIColor,fontNum:UIFont,textColor:UIColor)
+    mutating func changeViewBasicAttributes(lineColor:UIColor,lineInputColor:UIColor,cursorColor:UIColor,errorColor:UIColor,fontNum:UIFont,textColor:UIColor)
+    
+    mutating func changeInputNum(num:AsunFloct)
 }
 //属性默认值
 struct AsunBasicAttributes:AsunCodeProtocol {
     var textFiled: AsunText = UITextField()
-    var codeNum: AsunFloct = 4
+    var codeNum: AsunFloct = 0
     var lineColor: UIColor = UIColor.gray
     var lineInputColor: UIColor = UIColor.blue
     var errorlineViewColor: UIColor = UIColor.red
@@ -45,14 +47,16 @@ struct AsunBasicAttributes:AsunCodeProtocol {
 }
 
 extension AsunBasicAttributes {
-   mutating func changeViewBasicAttributes(codeNum: AsunFloct, lineColor: UIColor, lineInputColor: UIColor, cursorColor: UIColor, errorColor: UIColor, fontNum: UIFont, textColor: UIColor) {
-        self.codeNum = codeNum
+   mutating func changeViewBasicAttributes( lineColor: UIColor, lineInputColor: UIColor, cursorColor: UIColor, errorColor: UIColor, fontNum: UIFont, textColor: UIColor) {
         self.lineColor = lineColor
         self.lineInputColor = lineInputColor
         self.cursorColor = cursorColor
         self.fontNum = fontNum
         self.textColor = textColor
         self.errorlineViewColor = errorColor
+    }
+    mutating func changeInputNum(num: AsunFloct) {
+        self.codeNum = num
     }
 }
 
